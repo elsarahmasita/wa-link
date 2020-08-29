@@ -1,3 +1,5 @@
+let dark;
+
 function buatLink() {
     let data = $("form").serializeArray();
     let nomorWhatsApp = data[0]["value"];
@@ -30,6 +32,10 @@ function validasi() {
     } else {
         buatLink();
     }
+    // dark theme check, solved problem
+    if (dark) {
+        $(".card").toggleClass("dark");
+    }
 }
 
 function hapus() {
@@ -45,9 +51,11 @@ function hapus() {
         document.body.classList.toggle("dark");
         $("#tema").toggleClass("btn-dark btn-light")
         if (i % 2 === 0) {
+            dark = true;
             document.getElementById("tema").innerHTML = "Light mode";
         } else {
             document.getElementById("tema").innerHTML = "Dark mode";
+            dark = false;
         }
         i++;
         $(".jumbotron").toggleClass("dark");
